@@ -1,8 +1,8 @@
 package zhanjie;
 
-import static org.junit.Assert.assertTrue;
-
 import org.junit.Test;
+import zhanjie.factory.AutowireCapableBeanFactory;
+import zhanjie.factory.BeanFactory;
 
 /**
  * Unit test for simple App.
@@ -15,10 +15,11 @@ public class BeanFactoryTest
     @Test
     public void shouldAnswerWithTrue()
     {
-        BeanFactory factory = new BeanFactory();
-        BeanDefinition hello = new BeanDefinition(new HelloService());
-        factory.registerBeanDefinition("hello", hello);
-        HelloService service = (HelloService) factory.getBean("hello");
+        BeanFactory factory = new AutowireCapableBeanFactory();
+        BeanDefinition hello = new BeanDefinition();
+        hello.setClassName("zhanjie.HelloService");
+        factory.registerBeanDefinition("helloService", hello);
+        HelloService service = (HelloService) factory.getBean("helloService");
         service.doHello();
     }
 }
