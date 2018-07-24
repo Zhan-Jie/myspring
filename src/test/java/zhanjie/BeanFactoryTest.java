@@ -15,10 +15,18 @@ public class BeanFactoryTest
     @Test
     public void shouldAnswerWithTrue()
     {
+        // Bean factory
         BeanFactory factory = new AutowireCapableBeanFactory();
+        // Bean definition
         BeanDefinition hello = new BeanDefinition();
         hello.setClassName("zhanjie.HelloService");
+        // add bean properties
+        Properties props = new Properties();
+        props.addProperty(new Property("text", "Are you ok?"));
+        hello.setProperties(props);
+
         factory.registerBeanDefinition("helloService", hello);
+
         HelloService service = (HelloService) factory.getBean("helloService");
         service.doHello();
     }

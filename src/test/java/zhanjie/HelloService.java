@@ -1,7 +1,9 @@
 package zhanjie;
 
 public class HelloService {
+    private String text;
+
     public void doHello() {
-        System.out.println("hello, sb~");
+        System.out.println(text);
     }
 }

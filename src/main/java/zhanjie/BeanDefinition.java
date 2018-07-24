@@ -4,6 +4,7 @@ public class BeanDefinition {
     private String className;
     private Class clazz;
     private Object bean;
+    private Properties properties;
 
     public Object getBean() {
         return bean;
@@ -22,11 +23,19 @@ public class BeanDefinition {
         }
     }
 
-    public Class getClazz() {
+    public Class getBeanClazz() {
         return clazz;
     }
 
     public String getClassName() {
         return className;
+    }
+
+    public Properties getProperties() {
+        return properties;
+    }
+
+    public void setProperties(Properties properties) {
+        this.properties = properties;
     }
 }
