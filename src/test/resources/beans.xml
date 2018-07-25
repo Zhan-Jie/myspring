@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans>
+    <bean name="helloService" class="zhanjie.HelloService">
+        <property name="text" value="haha"/>
+    </bean>
+</beans>
