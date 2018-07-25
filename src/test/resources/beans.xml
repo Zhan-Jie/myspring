@@ -2,6 +2,10 @@
 
 <beans>
     <bean name="helloService" class="zhanjie.HelloService">
-        <property name="text" value="haha"/>
+        <property name="text" value="Are you ok?"/>
+        <property name="shabi" ref="shabiService"/>
+    </bean>
+    <bean name="shabiService" class="zhanjie.ShabiService">
+        <property name="shabi" value="spring"/>
     </bean>
 </beans>

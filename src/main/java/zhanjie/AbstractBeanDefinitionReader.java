@@ -18,7 +18,7 @@ public abstract class AbstractBeanDefinitionReader implements BeanDefinitionRead
         return registry;
     }
 
-    public void putBeanDefinition(String name, BeanDefinition definition){
+    protected void putBeanDefinition(String name, BeanDefinition definition){
         registry.put(name, definition);
     }
 

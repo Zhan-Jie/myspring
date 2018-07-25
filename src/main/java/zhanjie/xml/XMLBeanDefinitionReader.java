@@ -5,10 +5,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
-import zhanjie.AbstractBeanDefinitionReader;
-import zhanjie.BeanDefinition;
-import zhanjie.Properties;
-import zhanjie.Property;
+import zhanjie.*;
 import zhanjie.io.Resource;
 import zhanjie.io.ResourceLoader;
 
@@ -57,7 +54,7 @@ public class XMLBeanDefinitionReader extends AbstractBeanDefinitionReader{
         }
     }
 
-    private void injectProperties(Element ele, BeanDefinition definition) {
+    private void injectProperties(Element ele, BeanDefinition definition) throws IOException{
         NodeList props = ele.getElementsByTagName("property");
         Properties properties = new Properties();
         for (int i = 0; i < props.getLength(); ++i) {
@@ -66,7 +63,17 @@ public class XMLBeanDefinitionReader extends AbstractBeanDefinitionReader{
                 Element p = (Element) prop;
                 String name = p.getAttribute("name");
                 String value = p.getAttribute("value");
-                properties.addProperty(new Property(name, value));
+                if (value == null || value.trim().isEmpty()) {
+                    String ref = p.getAttribute("ref");
+                    if (ref == null || ref.trim().isEmpty()) {
+                        throw new IOException("'value' or 'ref' attribute is required in <property> element");
+                    }
+                    BeanReference reference = new BeanReference();
+                    reference.setName(ref);
+                    properties.addProperty(new Property(name, reference));
+                } else {
+                    properties.addProperty(new Property(name, value));
+                }
             }
         }
         definition.setProperties(properties);

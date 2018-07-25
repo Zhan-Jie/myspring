@@ -1,6 +1,7 @@
 package zhanjie.factory;
 
 import zhanjie.BeanDefinition;
+import zhanjie.BeanReference;
 import zhanjie.Property;
 
 import java.lang.reflect.Field;
@@ -27,7 +28,16 @@ public class AutowireCapableBeanFactory extends AbstractBeanFactory {
             try {
                 Field field = bean.getClass().getDeclaredField(p.getName());
                 field.setAccessible(true);
-                field.set(bean, p.getValue());
+                System.out.printf("inject property '%s' of class %s : %s\n", p.getName(), bean.getClass().getName(), p.getValue().getClass().getName());
+                Object value = p.getValue();
+                if (value instanceof String){
+                    field.set(bean, value);
+                } else if (value instanceof BeanReference) {
+                    BeanReference ref = (BeanReference) value;
+                    Object refBean = getBean(ref.getName());
+                    ref.setBean(refBean);
+                    field.set(bean, refBean);
+                }
             } catch (NoSuchFieldException | IllegalAccessException e) {
                 e.printStackTrace();
             }
