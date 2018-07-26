@@ -1,4 +1,4 @@
-package zhanjie;
+package zhanjie.beans;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;

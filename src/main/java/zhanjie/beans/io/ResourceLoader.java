@@ -1,4 +1,4 @@
-package zhanjie.io;
+package zhanjie.beans.io;
 
 public class ResourceLoader {
     public Resource getResource(String location) {

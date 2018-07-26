@@ -1,4 +1,4 @@
-package zhanjie;
+package zhanjie.beans;
 
 public class Property {
     private String name;

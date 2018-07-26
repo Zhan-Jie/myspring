@@ -1,4 +1,4 @@
-package zhanjie;
+package zhanjie.beans;
 
 import java.util.ArrayList;
 import java.util.List;

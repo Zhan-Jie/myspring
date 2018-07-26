@@ -1,4 +1,4 @@
-package zhanjie.xml;
+package zhanjie.beans.xml;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -6,8 +6,12 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 import zhanjie.*;
-import zhanjie.io.Resource;
-import zhanjie.io.ResourceLoader;
+import zhanjie.beans.AbstractBeanDefinitionReader;
+import zhanjie.beans.BeanDefinition;
+import zhanjie.beans.Properties;
+import zhanjie.beans.Property;
+import zhanjie.beans.io.Resource;
+import zhanjie.beans.io.ResourceLoader;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -15,7 +19,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class XMLBeanDefinitionReader extends AbstractBeanDefinitionReader{
+public class XMLBeanDefinitionReader extends AbstractBeanDefinitionReader {
 
     public XMLBeanDefinitionReader(ResourceLoader loader) {
         super(loader);

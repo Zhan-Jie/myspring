@@ -1,4 +1,4 @@
-package zhanjie.io;
+package zhanjie.beans.io;
 
 import java.io.IOException;
 import java.io.InputStream;

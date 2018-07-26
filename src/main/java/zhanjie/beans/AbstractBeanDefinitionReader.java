@@ -1,6 +1,6 @@
-package zhanjie;
+package zhanjie.beans;
 
-import zhanjie.io.ResourceLoader;
+import zhanjie.beans.io.ResourceLoader;
 
 import java.util.HashMap;
 import java.util.Map;

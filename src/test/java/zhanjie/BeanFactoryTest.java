@@ -1,13 +1,10 @@
 package zhanjie;
 
 import org.junit.Test;
-import zhanjie.factory.AutowireCapableBeanFactory;
-import zhanjie.factory.BeanFactory;
-import zhanjie.io.ResourceLoader;
-import zhanjie.xml.XMLBeanDefinitionReader;
+import zhanjie.context.ApplicationContext;
+import zhanjie.context.ClassPathXmlApplicationContext;
 
 import java.io.IOException;
-import java.util.Map;
 
 import static org.junit.Assert.fail;
 
@@ -22,20 +19,14 @@ public class BeanFactoryTest
     @Test
     public void shouldAnswerWithTrue()
     {
-        XMLBeanDefinitionReader reader = new XMLBeanDefinitionReader(new ResourceLoader());
         try {
-            reader.loadBeanDefinition("beans.xml");
+            ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
+            HelloService service = (HelloService) context.getBean("helloService");
+            service.doHello();
         } catch (IOException e) {
             e.printStackTrace();
             fail(e.getMessage());
         }
 
-        BeanFactory factory = new AutowireCapableBeanFactory();
-        for(Map.Entry<String, BeanDefinition> entry : reader.getRegistry().entrySet()) {
-            factory.registerBeanDefinition(entry.getKey(), entry.getValue());
-        }
-
-        HelloService service = (HelloService) factory.getBean("helloService");
-        service.doHello();
     }
 }

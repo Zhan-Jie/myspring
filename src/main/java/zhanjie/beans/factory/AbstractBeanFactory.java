@@ -1,6 +1,6 @@
-package zhanjie.factory;
+package zhanjie.beans.factory;
 
-import zhanjie.BeanDefinition;
+import zhanjie.beans.BeanDefinition;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,7 +13,6 @@ public abstract class AbstractBeanFactory implements BeanFactory {
         return definitions.get(name).getBean();
     }
 
-    @Override
     public void registerBeanDefinition(String name, BeanDefinition definition) {
         definition.setBean(doCreateBean(definition));
         this.definitions.put(name, definition);
